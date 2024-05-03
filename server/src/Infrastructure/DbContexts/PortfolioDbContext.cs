@@ -24,11 +24,11 @@ namespace Infrastructure.DbContexts
                 new Profile
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Sara",
-                    LastName = "Rasoulian",
-                    Email = "example@gmail.com",
-                    Headline = "Lorem ipsum",
-                    About = "Lorem ipsum is a placeholder text.",
+                    FirstName = "Awad EmadAldin",
+                    LastName = "MohammedFoad",
+                    Email = "awademad19977@hotmail.com",
+                    Headline = "Software Developer",
+                    About = "Software Developer with Experience in He althcare IT | Improving Patient Outcomes t hrough Innovative Technology Solutions",
                 }
                 );
 
@@ -37,8 +37,8 @@ namespace Infrastructure.DbContexts
                 {
                     Id = Guid.NewGuid(),
                     UserName = "admin",
-                    Password = "123456",
-                    Email = "example@gmail.com"
+                    Password = "199E656t24h89@53r$",
+                    Email = "awademad19977@hotmail.com"
                 }
                 );
 
@@ -46,11 +46,19 @@ namespace Infrastructure.DbContexts
                 new Experience
                 {
                     Id = Guid.NewGuid(),
-                    CompanyName = "Test",
-                    StartYear = "2020",
-                    EndYear = "2022",
-                    Description = "Lorem ipsum is a placeholder text."
-                }
+                    CompanyName = "Scabs Engineering Co",
+                    StartYear = "2014",
+                    EndYear = "2017",
+                    Description = ""
+                },
+                                new Experience
+                                {
+                                    Id = Guid.NewGuid(),
+                                    CompanyName = "Aliaa Specialized Hospital",
+                                    StartYear = "2017",
+                                    EndYear = "2023",
+                                    Description = ""
+                                }
                 );
 
             modelBuilder.Entity<Education>().HasData(
@@ -58,11 +66,11 @@ namespace Infrastructure.DbContexts
                 {
                     Id = Guid.NewGuid(),
                     Degree = "Bachelor's degree",
-                    FieldOfStudy = "Software Engineering",
-                    School = "Test University",
-                    StartYear = "2016",
-                    EndYear = "2020",
-                    Description = "Lorem ipsum is a placeholder text."
+                    FieldOfStudy = "Computer Science",
+                    School = "Omdurman Islamic University",
+                    StartYear = "2012",
+                    EndYear = "2016",
+                    Description = ""
                 }
                 );
 
@@ -71,7 +79,13 @@ namespace Infrastructure.DbContexts
                 {
                     Id = Guid.NewGuid(),
                     Name = "Github",
-                    URL = "https://github.com/SaraRasoulian",
+                    URL = "https://github.com/awad19977",
+                },
+                new SocialLink
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "LinkedIn",
+                    URL = "https://www.linkedin.com/in/awad-emad-81089118b",
                 }
                 );
         }
