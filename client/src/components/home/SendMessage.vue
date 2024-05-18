@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="form-item">
-          <textarea placeholder="Hi Sara …" v-model="formData.content" maxlength="1000"></textarea>
+          <textarea placeholder="Hi Awad …" v-model="formData.content" maxlength="1000"></textarea>
           <span class="validation-error" v-for="error in v$.content.$errors" :key="error.$uid">
             {{ error.$message }}
           </span>

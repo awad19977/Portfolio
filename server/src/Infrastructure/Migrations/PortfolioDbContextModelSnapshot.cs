@@ -3,8 +3,8 @@ using System;
 using Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -17,44 +17,44 @@ namespace Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("ProductVersion", "6.0.29")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Domain.Entities.Education", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Degree")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("EndYear")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("FieldOfStudy")
                         .IsRequired()
                         .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("School")
                         .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("StartYear")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("Id");
 
@@ -63,13 +63,13 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5b5321a3-3876-471f-acd6-11e690a3bf24"),
+                            Id = new Guid("07ea7dc2-9662-42ff-b888-c44f123dd44a"),
                             Degree = "Bachelor's degree",
-                            Description = "Lorem ipsum is a placeholder text.",
-                            EndYear = "2020",
-                            FieldOfStudy = "Software Engineering",
-                            School = "Test University",
-                            StartYear = "2016"
+                            Description = "",
+                            EndYear = "2016",
+                            FieldOfStudy = "Computer Science",
+                            School = "Omdurman Islamic University",
+                            StartYear = "2012"
                         });
                 });
 
@@ -77,31 +77,31 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("EndYear")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("StartYear")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Website")
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
@@ -110,11 +110,20 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ad8251e5-b8b8-4b97-9bde-389f1b5a76e1"),
-                            CompanyName = "Test",
-                            Description = "Lorem ipsum is a placeholder text.",
-                            EndYear = "2022",
-                            StartYear = "2020",
+                            Id = new Guid("d55cdd8f-d54d-45a2-b80e-e3107349417a"),
+                            CompanyName = "Scabs Engineering Co",
+                            Description = "",
+                            EndYear = "2017",
+                            StartYear = "2014",
+                            Website = ""
+                        },
+                        new
+                        {
+                            Id = new Guid("51747719-66c5-4ea2-95f6-3e8a32b541cd"),
+                            CompanyName = "Aliaa Specialized Hospital",
+                            Description = "",
+                            EndYear = "2023",
+                            StartYear = "2017",
                             Website = ""
                         });
                 });
@@ -123,28 +132,28 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(320)
-                        .HasColumnType("character varying(320)");
+                        .HasColumnType("nvarchar(320)");
 
                     b.Property<bool>("IsRead")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("SentAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -155,35 +164,35 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("About")
                         .IsRequired()
                         .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(320)
-                        .HasColumnType("character varying(320)");
+                        .HasColumnType("nvarchar(320)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Headline")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Photo")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -192,12 +201,12 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1c3c01b0-47f6-4c99-bafc-cdf24c76e9a9"),
-                            About = "Lorem ipsum is a placeholder text.",
-                            Email = "example@gmail.com",
-                            FirstName = "Sara",
-                            Headline = "Lorem ipsum",
-                            LastName = "Rasoulian"
+                            Id = new Guid("2a84bc3d-3a0b-4d66-8a41-641994ec4a5f"),
+                            About = "Software Developer with Experience in He althcare IT | Improving Patient Outcomes t hrough Innovative Technology Solutions",
+                            Email = "awademad19977@hotmail.com",
+                            FirstName = "Awad EmadAldin",
+                            Headline = "Software Developer",
+                            LastName = "MohammedFoad"
                         });
                 });
 
@@ -205,20 +214,20 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Icon")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("URL")
                         .IsRequired()
                         .HasMaxLength(2000)
-                        .HasColumnType("character varying(2000)");
+                        .HasColumnType("nvarchar(2000)");
 
                     b.HasKey("Id");
 
@@ -227,9 +236,15 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1181050f-dc7c-4aed-8909-464d7a26c67e"),
+                            Id = new Guid("5d386e99-4fee-48b8-98aa-5e7542f6d8bc"),
                             Name = "Github",
-                            URL = "https://github.com/SaraRasoulian"
+                            URL = "https://github.com/awad19977"
+                        },
+                        new
+                        {
+                            Id = new Guid("d1fdb01e-8856-4301-832e-fd7f63736086"),
+                            Name = "LinkedIn",
+                            URL = "https://www.linkedin.com/in/awad-emad-81089118b"
                         });
                 });
 
@@ -237,19 +252,19 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -258,9 +273,9 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4c6f07e8-26a4-416c-85fe-27636fcc6cbf"),
-                            Email = "example@gmail.com",
-                            Password = "123456",
+                            Id = new Guid("1d23b270-5709-40f0-9107-a1c38cc571ea"),
+                            Email = "awademad19977@hotmail.com",
+                            Password = "199E656t24h89@53r$",
                             UserName = "admin"
                         });
                 });

@@ -45,8 +45,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 
 // Database
-builder.Services.AddDbContext<PortfolioDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), o => o.UseNodaTime()));
-builder.Services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("DefaultConnection"), name: "PortfolioDB");
+builder.Services.AddDbContext<Infrastructure.DbContexts.PortfolioDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddHealthChecks().Add(builder.Configuration.GetConnectionString("DefaultConnection"), name: "PortfolioDB");
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
