@@ -1,10 +1,12 @@
 ﻿using Application.DTOs;
 using Application.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
+    [EnableCors("Policy1")]
     [Route("api/experiences")]
     [ApiController]
     public class ExperiencesController : ControllerBase

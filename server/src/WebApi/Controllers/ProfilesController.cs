@@ -1,11 +1,13 @@
 ﻿using Application.DTOs;
 using Application.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace WebApi.Controllers
 {
+    [EnableCors("Policy1")]
     [Route("api/profiles")]
     [ApiController]
     public class ProfilesController : ControllerBase
@@ -15,7 +17,7 @@ namespace WebApi.Controllers
         {
             _ProfileService = ProfileService;
         }
-
+        [EnableCors("Policy1")]
         [HttpGet]
         public async Task<IActionResult> Get()
         {

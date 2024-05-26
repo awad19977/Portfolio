@@ -22,7 +22,7 @@ services:
       context: ./server
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=User=sa;Password=MyDatabaseSecret123;Server=portfolio_db_container;Port=1433;Database=PortfolioDB;IntegratedSecurity=true;
+      - ConnectionStrings__DefaultConnection=User ID=sara;Password=mysecretpassword;Server=portfolio_db_container;Port=5432;Database=PortfolioDB;IntegratedSecurity=true;Pooling=true;
       - ASPNETCORE_URLS=http://+:5000
     networks:
       - portfolio_network
@@ -30,15 +30,15 @@ services:
   # PostgreSQL Database    
   portfolio_db:
     container_name: portfolio_db_container
-    image: mcr.microsoft.com/mssql/server
+    image: postgres
     environment:
-            SA_PASSWORD: "MyDatabaseSecret123"
-            ACCEPT_EULA: "Y"
-            PGDATA: /data/mssql
+      POSTGRES_USER: sara
+      POSTGRES_PASSWORD: mysecretpassword
+      PGDATA: /data/postgres
     volumes:
        - postgres_data:/data/mssql
     ports:
-      - "1433:1433"
+      - "5433:5432"
     networks:
       - portfolio_network
     restart: unless-stopped
