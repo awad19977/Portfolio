@@ -1,11 +1,13 @@
 ﻿using Application.DTOs;
 using Application.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace WebApi.Controllers
 {
+    [EnableCors("Policy1")]
     [Route("api/identity")]
     [ApiController]
     public class IdentityController : ControllerBase

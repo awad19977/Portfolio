@@ -146,7 +146,12 @@ const router = createRouter({
       name: 'delete-experience',
       beforeEnter: authenticateAndRoute,
       component: () => import('@/views/admin/experiences/DeleteExperience.vue')
-    }
+    }//,
+    //{
+    //  path:'/profile',
+    //  name:'view-profile',
+    //  component: () => import('@/views/admin/profile/ViewProfile.vue')
+    //}
   ]
 })
 

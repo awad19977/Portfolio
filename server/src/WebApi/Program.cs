@@ -39,7 +39,16 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true
     };
 });
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Policy1",
+        policy =>
+        {
+            policy.WithOrigins("*")
+            .AllowAnyHeader()
+            .AllowAnyMethod(); 
+        });
+});
 builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
@@ -74,7 +83,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
